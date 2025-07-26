@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="PIPER.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PIPER"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="PyPiper">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid>
+        <NavigationView x:Name="nvSample" SelectionFollowsFocus="Enabled" ItemInvoked="NavView_ItemInvoked">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home" Content="Home" Tag="homePage" x:Name="homePage" />
+                <NavigationViewItem Icon="Globe" Content="Virtual Environments" Tag="environmentPage" x:Name="environmentPage"/>
+                <NavigationViewItem Icon="Document" Content="Package Installation" Tag="packageInstallPage" x:Name="packageInstallPage"/>
+                <NavigationViewItem Icon="Link" Content="Juypter Kernel" Tag="environmentPage" x:Name="kernelPage"/>
+                <NavigationViewItem Icon="Download" Content="Python Download" Tag="pythonDownloadPage" x:Name="pythonDownloadPage"/>
+            </NavigationView.MenuItems>
+            <Frame x:Name="contentFrame"/>
+        </NavigationView>
+    </Grid>
+</Window>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="PIPER.Views.Home"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PIPER.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid VerticalAlignment="Stretch" Padding="10, 0, 10, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Top Content -->
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="PyPiper" FontSize="26"/>
+            <TextBlock></TextBlock>
+            <CheckBox Content="Is Python Installed" x:Name="checkbox_IsPythonInstalled" IsEnabled="False"/>
+            <TextBlock/>
+            <CheckBox Content="Is Python Launcher Installed" x:Name="checkbox_IsPythonLauncherInstalled" IsEnabled="False"/>
+            <TextBlock/>
+            <TextBox Header="Base Installed Version:" PlaceholderText="Version" IsEnabled="False"/>
+            <TextBlock/>
+            <ComboBox x:Name="comboPython" ItemsSource="{x:Bind PythonVersions}"  DisplayMemberPath="Item1" SelectedValuePath="Item2"  SelectionChanged="comboPython_SelectionChanged"
+                      Header="Available Versions:" Width="200"/>
+            <TextBlock></TextBlock>
+            <InfoBar IsOpen="True" Title="Python Version Download"
+             Message="If the version of python you want is not available, please navigate to the Python Download and install the desired version." 
+             IsClosable="False"/>
+        </StackPanel>
+
+        <!-- Bottom Text -->
+        <TextBlock Grid.Row="1"
+                   Text= "{Binding FooterText}"
+                   HorizontalAlignment="Center"
+                   Margin="0,30,0,10"
+                   FontSize="14"
+                   Foreground="Gray"/>
+
+    </Grid>
+</Page>

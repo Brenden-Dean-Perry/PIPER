@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PIPER (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PIPER (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
