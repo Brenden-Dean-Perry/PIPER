@@ -65,6 +65,11 @@ namespace PIPER.Views
             // Logic to install requirements
         }
 
+        private void Git_Install_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Logic to install from git repository
+        }
+
         private async void PickAFileButton_Click(object sender, RoutedEventArgs e)
         {
             //disable the button to avoid double-clicking

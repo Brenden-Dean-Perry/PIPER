@@ -56,6 +56,7 @@ namespace PIPER
             {
                 navOptions.IsNavigationStackEnabled = false;
             }
+
             Type pageType;
             if (args.IsSettingsInvoked == true)
             {
@@ -81,11 +82,16 @@ namespace PIPER
             {
                 pageType = typeof(Views.KernelManager);
             }
+            else if((NavigationViewItem)args.InvokedItemContainer == logPage)
+            {
+                pageType = typeof(Views.LogPage);
+            }
             else
             {
                 throw new ArgumentException("Invalid navigation item invoked", nameof(args.InvokedItem));
             }
              contentFrame.NavigateToType(pageType, null, navOptions);
         }
+
     }
 }

@@ -41,11 +41,8 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBox x:Name="HTTPURL" Header="HTTP Proxy URL:" PlaceholderText="HTTP Proxy URL"
+                    <TextBox x:Name="HTTPURL" Header="Proxy URL:" PlaceholderText="HTTP Proxy URL"
                          Grid.Row="0" HorizontalAlignment="Stretch" MinWidth="200" Width="Auto"/>
-
-                    <TextBox x:Name="HTTPSURL" Header="HTTPS Proxy URL:"  PlaceholderText="HTTPS Proxy URL"
-                         Grid.Row="2" HorizontalAlignment="Stretch" MinWidth="200"/>
                 </Grid>
             </Expander>
 

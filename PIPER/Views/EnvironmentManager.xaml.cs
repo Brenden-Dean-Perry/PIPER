@@ -25,10 +25,12 @@ namespace PIPER.Views
     public sealed partial class EnvironmentManager : Page
     {
         public ObservableCollection<Tuple<string, string>> PythonEnvironments { get; } = [];
+        public ObservableCollection<Tuple<string, string>> PythonVersions { get; } = [];
         public EnvironmentManager()
         {
             InitializeComponent();
             LoadPythonEnvironments();
+            LoadPythonVersions();
         }
 
         public void Create_Button_Click(object sender, RoutedEventArgs e)
@@ -47,11 +49,23 @@ namespace PIPER.Views
             PythonEnvironments.Add(Tuple.Create("Py39", @"C:\Python39\"));
             PythonEnvironments.Add(Tuple.Create("Py310", @"C:\Python310\"));
         }
+        private void LoadPythonVersions()
+        {
+            PythonVersions.Add(Tuple.Create("Py38", @"C:\Python38\"));
+            PythonVersions.Add(Tuple.Create("Py39", @"C:\Python39\"));
+            PythonVersions.Add(Tuple.Create("Py310", @"C:\Python310\"));
+        }
 
         private void comboEnvironment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var path = (string)((ComboBox)sender).SelectedValue;
 
+        }
+
+        private void comboPythonVersions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var path = (string)((ComboBox)sender).SelectedValue;
+            // now use “path” as the selected Python installation folder
         }
     }
 }

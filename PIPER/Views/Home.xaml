@@ -24,8 +24,15 @@
             <TextBlock/>
             <TextBox Header="Base Installed Version:" PlaceholderText="Version" IsEnabled="False"/>
             <TextBlock/>
-            <ComboBox x:Name="comboPython" ItemsSource="{x:Bind PythonVersions}"  DisplayMemberPath="Item1" SelectedValuePath="Item2"  SelectionChanged="comboPython_SelectionChanged"
-                      Header="Available Versions:" Width="200"/>
+            <ComboBox x:Name="comboPythonInstalledVersions" ItemsSource="{x:Bind PythonVersions}"  DisplayMemberPath="Item1" SelectedValuePath="Item2"  SelectionChanged="comboPythonVersions_SelectionChanged"
+                      Header="Installed Python Versions:"/>
+            <TextBlock/>
+            <TextBlock Text ="Versions Available for Install:" Padding="0, 0, 0, 10"/>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <ComboBox x:Name="comboInstallablePythonVersions" ItemsSource="{x:Bind InstallablePythonVersions}"  DisplayMemberPath="Item1" SelectedValuePath="Item2"  
+                          SelectionChanged="comboInstallablePythonVersions_SelectionChanged" MinWidth="200"/>
+                <Button Content="Open Install Location" Click="Open_Install_Location_Button_Click"/>
+            </StackPanel>
             <TextBlock></TextBlock>
             <InfoBar IsOpen="True" Title="Python Version Download"
              Message="If the version of python you want is not available, please navigate to the Python Download and install the desired version." 

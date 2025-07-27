@@ -14,15 +14,23 @@
     </Window.SystemBackdrop>
 
     <Grid>
-        <NavigationView x:Name="nvSample" SelectionFollowsFocus="Enabled" ItemInvoked="NavView_ItemInvoked">
+        <NavigationView x:Name="nvSample"
+                    Grid.Column="0"
+                    SelectionFollowsFocus="Enabled"
+                    ItemInvoked="NavView_ItemInvoked"
+                    PaneDisplayMode="Left"
+                    IsPaneToggleButtonVisible="True"
+                    IsPaneOpen="True">
+
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="homePage" x:Name="homePage" />
                 <NavigationViewItem Icon="Globe" Content="Virtual Environments" Tag="environmentPage" x:Name="environmentPage"/>
                 <NavigationViewItem Icon="Document" Content="Package Installation" Tag="packageInstallPage" x:Name="packageInstallPage"/>
                 <NavigationViewItem Icon="Link" Content="Juypter Kernel" Tag="environmentPage" x:Name="kernelPage"/>
                 <NavigationViewItem Icon="Download" Content="Python Download" Tag="pythonDownloadPage" x:Name="pythonDownloadPage"/>
+                <NavigationViewItem Icon="ShowResults" Content="Show Log" x:Name="logPage"/>
             </NavigationView.MenuItems>
-            <Frame x:Name="contentFrame"/>
+            <Frame x:Name="contentFrame" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </NavigationView>
     </Grid>
 </Window>

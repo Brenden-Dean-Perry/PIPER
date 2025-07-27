@@ -29,17 +29,41 @@ namespace PIPER.Views
     {
         // Property to bind to the ComboBox  
         public ObservableCollection<Tuple<string, string>> PythonVersions { get; } = [];
+        public ObservableCollection<Tuple<string, string>> InstallablePythonVersions { get; } = [];
 
         public Home()
         {
             this.InitializeComponent();
             LoadPythonVersions();
+            LoadPythonVersionsAvilableForInstall();
         }
 
-        private void comboPython_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void comboPythonVersions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var path = (string)((ComboBox)sender).SelectedValue;
             // now use “path” as the selected Python installation folder
+        }
+
+        private void comboInstallablePythonVersions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var path = (string)((ComboBox)sender).SelectedValue;
+            // now use “path” as the selected Python installation folder
+        }
+
+        private void Open_Install_Location_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var path = Classes.Config.ConfigService.GetAppSettings().Paths.InstallerPath;
+            if (Directory.Exists(path))
+            {
+                // Open the directory in File Explorer
+                var psi = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "explorer.exe",
+                    Arguments = path,
+                    UseShellExecute = true
+                };
+                System.Diagnostics.Process.Start(psi);
+            }
         }
 
         private void LoadPythonVersions()
@@ -47,6 +71,13 @@ namespace PIPER.Views
             PythonVersions.Add(Tuple.Create("3.8.10", @"C:\Python38\"));
             PythonVersions.Add(Tuple.Create("3.9.5", @"C:\Python39\"));
             PythonVersions.Add(Tuple.Create("3.10.7", @"C:\Python310\"));
+        }
+
+        private void LoadPythonVersionsAvilableForInstall()
+        {
+            InstallablePythonVersions.Add(Tuple.Create("3.8.10", @"C:\Python38\"));
+            InstallablePythonVersions.Add(Tuple.Create("3.9.5", @"C:\Python39\"));
+            InstallablePythonVersions.Add(Tuple.Create("3.10.7", @"C:\Python310\"));
         }
 
     }
