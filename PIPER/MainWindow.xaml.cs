@@ -17,8 +17,6 @@ using System.Xml.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT.Interop;
-using static System.Net.WebRequestMethods;
-
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,7 +28,7 @@ namespace PIPER
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private Type _lastPageType = null;
+        private Type? _lastPageType = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -48,8 +46,6 @@ namespace PIPER
                 IntPtr hWnd = WindowNative.GetWindowHandle(this);
                 WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
                 AppWindow appWindow = AppWindow.GetFromWindowId(wndId);
-
-                // Set the icon
                 appWindow.SetIcon("CustomAssets\\AppLogo.ico");
             }
         }

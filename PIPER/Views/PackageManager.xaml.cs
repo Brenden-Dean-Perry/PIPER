@@ -72,14 +72,12 @@ namespace PIPER.Views
 
         private async void PickAFileButton_Click(object sender, RoutedEventArgs e)
         {
-            //disable the button to avoid double-clicking
             var senderButton = sender as Button;
-            senderButton.IsEnabled = false;
+            if(senderButton is null) return;
+            senderButton.IsEnabled = false; //disable the button to avoid double-clicking
 
             PickAFileOutputTextBlock.Text = "";
             var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
-
-            // See the sample code below for how to make the window accessible from the App class.
             var window = App.MainWindow;
 
             // Retrieve the window handle (HWND) of the current WinUI 3 window.
@@ -92,7 +90,6 @@ namespace PIPER.Views
             openPicker.ViewMode = PickerViewMode.Thumbnail;
             openPicker.FileTypeFilter.Add(".txt");
 
-            // Open the picker for the user to pick a file
             var file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
