@@ -20,10 +20,11 @@
                     ItemInvoked="NavView_ItemInvoked"
                     PaneDisplayMode="Left"
                     IsPaneToggleButtonVisible="True"
-                    IsPaneOpen="True">
+                    IsPaneOpen="False"
+                    IsBackButtonVisible="Collapsed">
 
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Home" Content="Home" Tag="homePage" x:Name="homePage" />
+                <NavigationViewItem Icon="Home" Content="Home" Tag="homePage" x:Name="homePage"/>
                 <NavigationViewItem Icon="Globe" Content="Virtual Environments" Tag="environmentPage" x:Name="environmentPage"/>
                 <NavigationViewItem Icon="Document" Content="Package Installation" Tag="packageInstallPage" x:Name="packageInstallPage"/>
                 <NavigationViewItem Icon="Link" Content="Juypter Kernel" Tag="environmentPage" x:Name="kernelPage"/>

@@ -33,6 +33,10 @@ namespace PIPER
         {
             InitializeComponent();
             SetAppIcon();
+
+            // Initialize the NavigationView
+            homePage.IsSelected = true;
+            contentFrame.Navigate(typeof(Views.Home));
         }
 
         private void SetAppIcon()
