@@ -13,6 +13,7 @@ using System.Formats.Asn1;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Xml.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT.Interop;
@@ -29,6 +30,7 @@ namespace PIPER
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private Type _lastPageType = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -54,47 +56,40 @@ namespace PIPER
 
         private void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            FrameNavigationOptions navOptions = new FrameNavigationOptions();
-            navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
+            FrameNavigationOptions navOptions = new FrameNavigationOptions
+            {
+                TransitionInfoOverride = args.RecommendedNavigationTransitionInfo
+            };
+
             if (sender.PaneDisplayMode == NavigationViewPaneDisplayMode.Top)
             {
                 navOptions.IsNavigationStackEnabled = false;
             }
 
-            Type pageType;
-            if (args.IsSettingsInvoked == true)
+            Type? pageType = args.IsSettingsInvoked switch
             {
-                pageType = typeof(Views.Settings);
-            }
-            else if((NavigationViewItem)args.InvokedItemContainer == homePage)
+                true => typeof(Views.Settings),
+                false when args.InvokedItemContainer == homePage => typeof(Views.Home),
+                false when args.InvokedItemContainer == pythonDownloadPage => typeof(Views.PythonDownload),
+                false when args.InvokedItemContainer == environmentPage => typeof(Views.EnvironmentManager),
+                false when args.InvokedItemContainer == packageInstallPage => typeof(Views.PackageManager),
+                false when args.InvokedItemContainer == kernelPage => typeof(Views.KernelManager),
+                false when args.InvokedItemContainer == logPage => typeof(Views.LogPage),
+                _ => null
+            };
+
+            if (pageType == null)
             {
-                pageType = typeof(Views.Home);
+                return;
             }
-            else if ((NavigationViewItem)args.InvokedItemContainer == pythonDownloadPage)
+
+            if (_lastPageType == pageType)
             {
-                pageType = typeof(Views.PythonDownload);
+                return;
             }
-            else if ((NavigationViewItem)args.InvokedItemContainer == environmentPage)
-            {
-                pageType = typeof(Views.EnvironmentManager);
-            }
-            else if ((NavigationViewItem)args.InvokedItemContainer == packageInstallPage)
-            {
-                pageType = typeof(Views.PackageManager);
-            }
-            else if ((NavigationViewItem)args.InvokedItemContainer == kernelPage)
-            {
-                pageType = typeof(Views.KernelManager);
-            }
-            else if((NavigationViewItem)args.InvokedItemContainer == logPage)
-            {
-                pageType = typeof(Views.LogPage);
-            }
-            else
-            {
-                throw new ArgumentException("Invalid navigation item invoked", nameof(args.InvokedItem));
-            }
-             contentFrame.NavigateToType(pageType, null, navOptions);
+
+            contentFrame.NavigateToType(pageType, null, navOptions);
+            _lastPageType = pageType;
         }
 
     }
